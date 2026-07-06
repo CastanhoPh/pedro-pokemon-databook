@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedro Pokémon Databook — Campeão Mundial</title>
+<meta name="description" content="A jornada completa de Pedro, Campeão Mundial de Pokémon — de Kanto até Galar. Títulos, Pokémon lendários e shiny, Mega Evoluções, Gigantamax e Z-Moves.">
+<meta name="theme-color" content="#0a0d1c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🏆</text></svg>">
+<!-- Open Graph / redes sociais -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pedro — Campeão Mundial de Pokémon">
+<meta property="og:description" content="A jornada de Pedro de Kanto até Galar: títulos, Pokémon raros, Mega Evoluções, Gigantamax e Z-Moves.">
+<meta property="og:image" content="https://res.cloudinary.com/dokl8hfqz/image/upload/v1782926448/Pedro_Castanho_-_Imagem_de_Treinador_sem_fundo_g0aomc.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pedro — Campeão Mundial de Pokémon">
+<meta name="twitter:description" content="A jornada de Pedro de Kanto até Galar — títulos, Megas, Gigantamax e Z-Moves.">
+<meta name="twitter:image" content="https://res.cloudinary.com/dokl8hfqz/image/upload/v1782926448/Pedro_Castanho_-_Imagem_de_Treinador_sem_fundo_g0aomc.png">
+<link rel="preconnect" href="https://raw.githubusercontent.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070912; --bg2:#0d1020; --panel:#12172b; --panel2:#171d38;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --txt:#e9ecff; --muted:#98a0c8; --dim:#6b7398;
+  --gold:#ffcb3d; --gold2:#ff9f1c;
+  --red:#ff3b5c; --blue:#3d8bff; --purple:#a45cff;
+  --cyan:#28e0d8; --green:#38e08b; --silver:#dfe6ff;
+  --shadow:0 18px 50px rgba(0,0,0,.55);
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+button,.btn,.chip,.morph-btn,.hs-opt,.modal-close,.medal-btn,.pf-mon,.pk-card,.team-mon,.tl-card,.mega-card,.card[onclick],[onclick]{user-select:none}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Rajdhani',system-ui,sans-serif;
+  background:radial-gradient(1200px 800px at 80% -10%,rgba(164,92,255,.10),transparent 60%),
+             radial-gradient(1000px 700px at -10% 20%,rgba(61,139,255,.10),transparent 55%),
+             var(--bg);
+  color:var(--txt); min-height:100vh; overflow-x:hidden;
+}
+h1,h2,h3,.font-display{font-family:'Orbitron',sans-serif;letter-spacing:.5px}
+a{color:inherit;text-decoration:none}
+img{display:block}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--purple),var(--blue));border-radius:8px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+
+/* ---------- Layout ---------- */
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+.sidebar{
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  background:linear-gradient(180deg,var(--bg2),#0a0d1a);
+  border-right:1px solid var(--line);padding:22px 14px;z-index:40;
+}
+.brand{display:flex;align-items:center;gap:11px;padding:6px 8px 18px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.brand .ball{width:38px;height:38px;flex:none;border-radius:50%;
+  background:linear-gradient(180deg,var(--red) 0 49%,#fff 49% 51%,#f2f4ff 51% 100%);
+  box-shadow:0 0 0 3px #0b0e1a,0 0 18px rgba(255,59,92,.5);position:relative}
+.brand .ball:after{content:"";position:absolute;inset:0;margin:auto;width:11px;height:11px;border-radius:50%;background:#0b0e1a;border:3px solid #fff}
+.brand .bt{font-family:'Orbitron';font-size:14px;font-weight:900;line-height:1.1}
+.brand .bt small{display:block;font-family:'Rajdhani';font-weight:600;font-size:10.5px;letter-spacing:2px;color:var(--gold);margin-top:3px}
+.nav a{
+  display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:12px;
+  color:var(--muted);font-weight:600;font-size:15px;margin:3px 0;transition:.16s;position:relative
+}
+.nav a .ic{width:20px;text-align:center;font-size:16px;filter:grayscale(.2)}
+.nav a:hover{background:var(--panel);color:var(--txt)}
+.nav a.active{background:linear-gradient(90deg,rgba(164,92,255,.22),rgba(61,139,255,.10));color:#fff}
+.nav a.active:before{content:"";position:absolute;left:-14px;top:14%;height:72%;width:4px;border-radius:4px;background:linear-gradient(var(--gold),var(--gold2))}
+.nav .sep{font-size:10px;letter-spacing:2px;color:var(--dim);padding:14px 13px 6px;font-weight:700;text-transform:uppercase}
+
+.main{min-width:0;padding:0}
+.view{display:none;animation:fade .4s ease}
+/* Início e Perfil: cabem em uma tela, sem rolagem */
+#view-home.active,#view-profile.active{height:100vh;overflow:hidden}
+#view-profile.active{display:flex;flex-direction:column;justify-content:center}
+#view-profile .wrap{width:100%;padding-top:8px;padding-bottom:8px}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 30px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:6px 0 22px;flex-wrap:wrap}
+.section-head h2{font-size:26px;background:linear-gradient(90deg,#fff,#c9d2ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.section-head .sub{color:var(--muted);font-size:15px;margin-top:4px;max-width:640px}
+.kicker{font-family:'Orbitron';font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:700}
+
+/* ---------- Buttons / chips ---------- */
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border-radius:12px;font-family:'Orbitron';
+  font-weight:700;font-size:13px;letter-spacing:.5px;cursor:pointer;border:1px solid var(--line2);
+  background:var(--panel);color:var(--txt);transition:.16s}
+.btn:hover{transform:translateY(-2px);border-color:var(--line2)}
+.btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#241800;border:none;box-shadow:0 10px 26px rgba(255,159,28,.35)}
+.btn.red{background:linear-gradient(135deg,var(--red),#c81e46);color:#fff;border:none;box-shadow:0 10px 26px rgba(255,59,92,.32)}
+.btn.ghost{background:rgba(255,255,255,.04)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:700;
+  border:1px solid var(--line2);background:rgba(255,255,255,.04);color:var(--muted);cursor:pointer;transition:.15s;font-family:'Rajdhani'}
+.chip:hover{color:#fff;border-color:var(--line2)}
+.chip.on{background:linear-gradient(90deg,var(--purple),var(--blue));color:#fff;border-color:transparent}
+
+/* badges */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:10.5px;font-weight:800;
+  font-family:'Orbitron';letter-spacing:.6px;text-transform:uppercase;white-space:nowrap;flex:none}
+.b-champ{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#241800}
+.b-shiny{background:linear-gradient(90deg,#c0c9ff,#fff,#c0c9ff);color:#1a1e33}
+.b-legend{background:linear-gradient(90deg,#ffcb3d,#ff7b00);color:#241800}
+.b-myth{background:linear-gradient(90deg,#a45cff,#6a2cff);color:#fff}
+.b-ub{background:linear-gradient(90deg,#28e0d8,#7a4dff);color:#04121a}
+.b-ha{background:linear-gradient(90deg,#28d1ff,#2d7bff);color:#04121f}
+.b-mega{background:linear-gradient(90deg,#ff3b5c,#a45cff);color:#fff}
+.b-final{background:linear-gradient(90deg,#111,#333);color:var(--gold);border:1px solid var(--gold)}
+
+/* ---------- HOME ---------- */
+.hero{position:relative;height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(900px 600px at 70% 30%,rgba(255,159,28,.16),transparent 60%),
+            radial-gradient(700px 700px at 20% 80%,rgba(164,92,255,.20),transparent 60%),
+            linear-gradient(180deg,#0a0d1c,#05060e)}
+.hero-bg .stadium{position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,transparent 0 78px,rgba(61,139,255,.05) 78px 80px),
+  repeating-linear-gradient(0deg,transparent 0 78px,rgba(164,92,255,.05) 78px 80px);
+  mask:linear-gradient(180deg,transparent,#000 40%,#000 70%,transparent);opacity:.6}
+.hero-bg .glow{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:620px;height:620px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,203,61,.28),transparent 62%);filter:blur(6px)}
+.hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:40px 30px;width:100%;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+.hero-tag{display:inline-flex;gap:8px;align-items:center;padding:7px 15px;border-radius:999px;border:1px solid var(--gold);
+  color:var(--gold);font-family:'Orbitron';font-size:11px;letter-spacing:2px;font-weight:700;margin-bottom:20px;
+  background:rgba(255,203,61,.08)}
+.hero h1{font-size:clamp(38px,6vw,68px);line-height:.98;font-weight:900;margin-bottom:8px;
+  background:linear-gradient(120deg,#fff 20%,var(--gold) 55%,#fff 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  text-shadow:0 0 60px rgba(255,203,61,.15)}
+.hero .lead{font-size:18px;color:var(--muted);max-width:560px;margin:16px 0 26px;line-height:1.5}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:14px;margin-top:30px;flex-wrap:nowrap}
+.hero-stats .s{text-align:center}
+.hero-stats .s b{font-family:'Orbitron';font-size:23px;display:block;background:linear-gradient(var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stats .s span{font-size:10px;color:var(--dim);letter-spacing:.8px;text-transform:uppercase;font-weight:700;white-space:nowrap}
+.hero-team{position:relative;height:460px}
+.hero-team .ring{position:absolute;inset:0;margin:auto;width:340px;height:340px;border-radius:50%;
+  border:2px dashed rgba(255,203,61,.35);animation:spin 26s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-team .orb{position:absolute;width:98px;height:98px;left:50%;top:50%;margin:-49px;border-radius:22px;overflow:hidden;
+  background:radial-gradient(circle at 50% 30%,var(--panel2),#0a0d1c);border:1px solid var(--line2);box-shadow:var(--shadow);
+  transition:.3s}
+.hero-team .orb img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+.hero-team .orb:hover{z-index:5;border-color:var(--gold)}
+.hero-team .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  background:radial-gradient(circle,rgba(255,203,61,.22),rgba(10,13,28,.9));border:2px solid var(--gold);box-shadow:0 0 50px rgba(255,203,61,.35)}
+.hero-team .center .cup{font-size:52px}
+.hero-team .center small{font-family:'Orbitron';font-size:9px;letter-spacing:2px;color:var(--gold);margin-top:2px}
+
+/* ---------- Cards / grids ---------- */
+.grid{display:grid;gap:18px}
+.g-auto{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}
+.g-3{grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr))}
+.g-2{grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr))}
+.card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;transition:.2s;position:relative}
+.card:hover{transform:translateY(-4px);border-color:var(--line2);box-shadow:var(--shadow)}
+
+/* mini time final no perfil */
+.pf-mon{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle,rgba(255,203,61,.16),var(--bg2));border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s;overflow:hidden;flex:none}
+.pf-mon:hover{transform:scale(1.1);box-shadow:0 0 14px rgba(255,203,61,.5)}
+.pf-mon img{width:78%;height:78%;object-fit:contain;filter:drop-shadow(0 3px 6px rgba(0,0,0,.5))}
+
+/* stat tiles */
+.stat-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.tile{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:16px;padding:13px 14px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:78px}
+.tile:before{content:"";position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(164,92,255,.2),transparent 70%)}
+.tile b{font-family:'Orbitron';font-size:33px;display:block;color:#fff;margin-bottom:3px}
+.tile span{color:var(--muted);font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
+.tile.gold b{color:var(--gold)}
+/* Jornada atual (em andamento) */
+.current-journey{margin-top:26px;border:1.5px dashed var(--gold);border-radius:var(--radius);padding:22px 24px;background:linear-gradient(135deg,rgba(255,203,61,.08),rgba(40,224,216,.06),var(--panel))}
+.cj-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.cj-head h3{font-size:20px}
+.cj-badge{font-family:'Orbitron';font-size:11px;font-weight:800;letter-spacing:1px;color:#06210f;background:linear-gradient(90deg,#28e0d8,#38e08b);padding:4px 11px;border-radius:20px;white-space:nowrap}
+.cj-game{color:var(--dim);font-size:12.5px;font-weight:700}
+.cj-blurb{color:var(--muted);font-size:14.5px;line-height:1.55;margin-bottom:10px}
+.cj-goal{color:var(--gold);font-weight:700;font-size:14px;margin-bottom:14px}
+.cj-label{color:var(--dim);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+
+/* ---------- Timeline ---------- */
+.timeline{position:relative;padding-left:8px}
+.tl-item{position:relative;padding:0 0 8px 46px;margin-bottom:18px}
+.tl-item:before{content:"";position:absolute;left:15px;top:34px;bottom:-18px;width:3px;background:linear-gradient(var(--purple),var(--blue))}
+.tl-item:last-child:before{display:none}
+.tl-dot{position:absolute;left:5px;top:14px;width:24px;height:24px;border-radius:50%;background:var(--bg);
+  border:3px solid var(--gold);box-shadow:0 0 16px rgba(255,203,61,.5);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;font-family:'Orbitron';color:var(--gold);z-index:2}
+.tl-card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:16px;padding:18px 20px;cursor:pointer;transition:.18s;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+.tl-card:hover{border-color:var(--gold);transform:translateX(4px)}
+.tl-card h3{font-size:19px;margin-bottom:3px}
+.tl-card .ti{color:var(--gold);font-weight:700;font-size:13.5px;margin-bottom:8px}
+.tl-card .meta{color:var(--muted);font-size:13.5px;line-height:1.5}
+.tl-card .meta b{color:var(--txt)}
+.tl-sig{display:flex;align-items:center;gap:10px}
+.tl-sig img{width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5))}
+
+/* region banner */
+.region-banner{position:relative;border-radius:var(--radius);overflow:hidden;padding:26px;min-height:190px;display:flex;
+  align-items:flex-end;justify-content:space-between;gap:16px;border:1px solid var(--line2);margin-bottom:20px}
+.region-banner .rb-art{position:absolute;right:3%;top:50%;transform:translateY(-50%);max-height:96%;max-width:40%;width:auto;opacity:.92;filter:drop-shadow(0 10px 25px rgba(0,0,0,.6));pointer-events:none}
+.region-banner .rb-txt{position:relative;z-index:2;max-width:62%}
+.region-banner h2{font-size:30px;margin-bottom:6px}
+
+/* team card */
+.team-card .tc-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.team-card .tc-head h3{font-size:18px}
+.team-card .tc-head .ti{color:var(--gold);font-size:12.5px;font-weight:700}
+.team-mons{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:14px}
+.card:has(.team-mons){overflow:visible}
+.team-mon{background:radial-gradient(circle at 50% 25%,var(--panel2),var(--bg2));border:1px solid var(--line);border-radius:12px;
+  padding:10px 6px 10px;text-align:center;cursor:pointer;transition:.15s;position:relative;display:flex;flex-direction:column;justify-content:flex-start}
+.team-mon:hover{border-color:var(--gold);transform:translateY(-3px)}
+.team-mon img{width:100%;height:78px;object-fit:contain;filter:drop-shadow(0 5px 7px rgba(0,0,0,.5))}
+.team-mon span{font-size:11.5px;font-weight:700;color:var(--muted);display:block;margin-top:4px;line-height:1.15;min-height:27px;overflow:hidden}
+.team-mon .mini{position:absolute;top:5px;right:5px;font-size:12px}
+.team-mon.team-slot-empty{cursor:default;opacity:.5;background:repeating-linear-gradient(45deg,rgba(255,255,255,.02),rgba(255,255,255,.02) 6px,transparent 6px,transparent 12px);border-style:dashed}
+.team-mon.team-slot-empty:hover{border-color:var(--line);transform:none}
+.team-mon .slot-dash{height:78px;display:flex;align-items:center;justify-content:center;font-family:'Orbitron';font-size:26px;color:var(--dim)}
+#availableList{grid-template-columns:repeat(8,1fr);gap:5px;padding:10px}
+#availableList .team-mon{padding:6px 4px 8px}
+#availableList .team-mon img{height:44px}
+#availableList .team-mon span{font-size:9.5px;min-height:20px}
+#availableList .team-mon .mini{font-size:10px}
+
+/* pokédex nacional (linhas evolutivas) */
+.dex-family{margin-bottom:20px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.dex-fam-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px;font-family:'Orbitron';font-size:15px}
+.dex-fam-head span{color:var(--muted);font-size:12px;font-weight:600;white-space:nowrap}
+.dex-line{display:flex;flex-wrap:wrap;gap:10px}
+.dex-cell{position:relative;width:106px;padding:8px 6px 10px;border-radius:12px;background:var(--bg2);border:1px solid var(--line);text-align:center;transition:.15s}
+.dex-cell:hover{transform:translateY(-3px);border-color:var(--gold)}
+.dex-cell img{width:76px;height:76px;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+.dex-cell .dn{font-size:12px;font-weight:700;margin-top:4px;line-height:1.2}
+.dex-cell .di{font-size:10.5px;color:var(--dim);margin-top:2px;font-family:'Orbitron'}
+.dex-cell.is-form{border-style:dashed;background:linear-gradient(180deg,rgba(164,92,255,.06),var(--bg2))}
+.dex-tag{display:inline-block;margin-top:4px;font-size:9.5px;font-weight:800;color:#0a0d1c;padding:1px 8px;border-radius:20px;letter-spacing:.3px;white-space:nowrap}
+.dex-filterbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.dex-select{background:var(--panel);border:1px solid var(--line2);color:#fff;font-family:'Rajdhani';font-weight:600;font-size:14px;padding:10px 14px;border-radius:12px;cursor:pointer;min-width:160px;outline:none;transition:.15s;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2398a0c8' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
+.dex-select:hover,.dex-select:focus{border-color:var(--purple)}
+.dex-select option{background:var(--bg2);color:#fff}
+/* pokedex card */
+.pk-card{cursor:pointer}
+.pk-top{position:relative;padding:16px 14px 4px;display:flex;justify-content:center;background:radial-gradient(circle at 50% 20%,rgba(164,92,255,.10),transparent 70%)}
+.pk-top img{width:118px;height:118px;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(0,0,0,.55));transition:.25s}
+.pk-card:hover .pk-top img{transform:scale(1.08) translateY(-3px)}
+.pk-fav{position:absolute;top:10px;right:12px;font-size:19px;cursor:pointer;filter:grayscale(1);opacity:.5;transition:.15s;z-index:3}
+.pk-fav.on{filter:none;opacity:1;text-shadow:0 0 10px rgba(255,203,61,.7)}
+.pk-body{padding:6px 15px 16px}
+.pk-body .nm{font-family:'Orbitron';font-size:15px;font-weight:700;display:flex;align-items:center;gap:7px}
+.pk-body .rg{color:var(--dim);font-size:12.5px;font-weight:600;margin:2px 0 9px}
+.pk-badges{display:flex;flex-wrap:wrap;gap:5px}
+.pk-status{position:absolute;top:8px;left:8px;display:flex;flex-wrap:wrap;align-items:center;gap:4px;z-index:3;max-width:82%}
+.pk-top .mm{position:relative;display:inline-block}
+.pk-top .mm .z-hover{position:absolute;top:-4px;right:-4px;width:40px;height:40px;object-fit:contain;opacity:0;z-index:4;pointer-events:none;filter:drop-shadow(0 3px 6px rgba(0,0,0,.6))}
+.pk-card:hover .mm .z-hover{opacity:1;animation:megaBadgePop .35s ease-out both}
+/* quando o Pokémon morfa (Mega/Gmax/Forma), o cristal do Z-Move some — mecânicas mutuamente exclusivas */
+.pk-card.mega-active .z-hover,.hof.mega-active .pod .z-hover,.hof-sig.mega-active .hof-sig-ico .z-hover{opacity:0!important;animation:none!important}
+/* cristais de Z-Move no hover — Hall da Fama */
+.hof .pod .z-hover{position:absolute;top:-2px;right:6px;width:38px;height:38px;object-fit:contain;opacity:0;z-index:5;pointer-events:none;filter:drop-shadow(0 3px 6px rgba(0,0,0,.6))}
+.hof-sig-ico .z-hover{position:absolute;top:-6px;right:-8px;width:34px;height:34px;object-fit:contain;opacity:0;z-index:5;pointer-events:none;filter:drop-shadow(0 3px 6px rgba(0,0,0,.6))}
+.hof:hover .pod .z-hover,.hof-sig:hover .hof-sig-ico .z-hover{opacity:1;animation:megaBadgePop .35s ease-out both}
+/* cristais de Z-Move no hover — times (Regiões, Times, Minhas Equipes) */
+.team-mon .mm{position:relative;display:block}
+.team-mon .mm .z-hover{position:absolute;top:-4px;right:-4px;width:32px;height:32px;object-fit:contain;opacity:0;z-index:4;pointer-events:none;filter:drop-shadow(0 3px 6px rgba(0,0,0,.6))}
+.team-mon:hover .mm .z-hover{opacity:1;animation:megaBadgePop .35s ease-out both}
+.team-mon.mega-active .mm .z-hover{opacity:0!important;animation:none!important}
+/* antes de Alola, Pedro ainda não tinha Z-Moves — cristal não aparece no hover nessas etapas */
+[data-nozmove] .z-hover{opacity:0!important;animation:none!important}
+.status-ico{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid rgba(255,255,255,.6);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+.status-ico img{width:27px;height:27px;object-fit:contain}
+.status-ico.ico-zmove{overflow:hidden}
+.status-ico.ico-zmove img{width:100%;height:100%;transform:scale(1.35)}
+.status-ico:hover{border-color:var(--gold);transform:scale(1.08)}
+.medal-btn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid rgba(255,255,255,.6);box-shadow:0 2px 6px rgba(0,0,0,.5);font-size:17px;line-height:1;cursor:default}
+.medal-btn:hover{transform:scale(1.08)}
+.pk-types{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:0 0 8px}
+.pk-rarity{margin-left:auto;display:inline-flex;gap:5px}
+.type-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:10.5px;font-weight:800;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.45);letter-spacing:.2px}
+.pk-title-pill{margin-left:auto;font-family:'Orbitron';font-size:11px;color:var(--gold);font-weight:700}
+.card.is-shiny{border-color:rgba(200,210,255,.4);box-shadow:0 0 0 1px rgba(200,210,255,.15),inset 0 0 40px rgba(180,200,255,.06)}
+.card.is-legend{border-color:rgba(255,159,28,.4)}
+.card.is-myth{border-color:rgba(164,92,255,.45)}
+.card.is-final{border-color:var(--gold);box-shadow:inset 0 0 40px rgba(255,203,61,.08)}
+@keyframes shinyPulse{0%,100%{box-shadow:0 0 14px rgba(170,215,255,.32),inset 0 0 26px rgba(200,225,255,.06)}50%{box-shadow:0 0 26px rgba(190,228,255,.6),inset 0 0 32px rgba(210,232,255,.13)}}
+.pk-card.shiny-glow{border-color:rgba(205,228,255,.6)!important;animation:shinyPulse 2.4s ease-in-out infinite}
+
+/* toolbar */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.search{flex:1;min-width:220px;display:flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line2);
+  border-radius:12px;padding:11px 15px}
+.search input{background:none;border:none;outline:none;color:#fff;font-family:'Rajdhani';font-size:15px;font-weight:600;width:100%}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.count-note{color:var(--dim);font-size:13px;font-weight:600;margin:-8px 0 16px}
+
+/* ---------- Final team ---------- */
+.final-hero{position:relative;border-radius:22px;overflow:hidden;padding:40px 30px;margin-bottom:26px;
+  background:radial-gradient(700px 400px at 50% -10%,rgba(255,203,61,.22),transparent 60%),linear-gradient(180deg,#141019,#0a0710);
+  border:1px solid var(--gold);text-align:center}
+.final-hero .cup{font-size:60px;filter:drop-shadow(0 0 24px rgba(255,203,61,.6))}
+.final-hero h2{font-size:34px;margin:6px 0 6px;background:linear-gradient(120deg,#fff,var(--gold),#fff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.final-hero p{color:var(--muted);max-width:640px;margin:0 auto}
+.final-card{border:1px solid var(--gold);background:linear-gradient(180deg,#15121f,#0b0810)}
+.final-card .fc-top{display:flex;gap:14px;padding:16px 18px;align-items:center;border-bottom:1px solid rgba(255,203,61,.2);position:relative;
+  background:radial-gradient(circle at 20% 30%,rgba(255,203,61,.10),transparent 60%)}
+.final-card .fc-top img{width:96px;height:96px;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(0,0,0,.6))}
+.final-card .fc-top h3{font-size:19px}
+.final-card .fc-top .role{color:var(--gold);font-size:12.5px;font-weight:700;margin:3px 0}
+/* ===== EFEITO DE MEGA EVOLUÇÃO (hover) ===== */
+@keyframes megaFlash{0%{filter:brightness(3) saturate(1.8) drop-shadow(0 0 22px #fff);transform:scale(1.28)}
+  35%{filter:brightness(1.5) saturate(1.6) drop-shadow(0 0 20px #c07bff)}
+  100%{filter:brightness(1.06) saturate(1.15) drop-shadow(0 0 14px #b06bff);transform:scale(1.1)}}
+@keyframes megaBadgePop{from{opacity:0;transform:translateY(-5px) scale(.7)}to{opacity:1;transform:none}}
+.mega-active{position:relative;overflow:visible!important;box-shadow:0 0 26px rgba(176,107,255,.6)!important;border-color:#c07bff!important;transition:box-shadow .3s,border-color .3s;z-index:3}
+.mega-active img,img.mega-active{animation:megaFlash .6s cubic-bezier(.2,.9,.3,1) both;filter:drop-shadow(0 0 14px #b06bff);will-change:transform,filter}
+.mega-active .pk-status img{animation:none!important;filter:none!important;transform:none!important}
+.mega-active::after{content:attr(data-morph);position:absolute;top:6px;right:6px;font-family:'Orbitron';font-size:9px;font-weight:800;letter-spacing:1px;
+  padding:2px 6px;border-radius:6px;color:#fff;background:linear-gradient(90deg,#ff3b5c,#b06bff);box-shadow:0 2px 8px rgba(0,0,0,.4);
+  animation:megaBadgePop .4s ease-out both;pointer-events:none;z-index:5}
+.orb.mega-active::after,.tl-sig.mega-active::after,.pf-mon.mega-active::after{display:none}
+/* Regiões: hover continua trocando o sprite, mas sem o selinho escrito MEGA/GMAX cobrindo o Pokémon */
+#regionsList .team-mon.mega-active::after{display:none}
+/* Assinatura por Região: morfa o sprite no hover, mas sem o quadrado/realce roxo */
+/* Assinatura por Região: mantém o flash roxo no sprite (igual aos outros), só remove o quadrado (box-shadow) e o selo do card */
+.hof-sig.mega-active{box-shadow:none!important;border-color:var(--line)!important}
+.hof-sig.mega-active::after{display:none!important}
+.final-stats{padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;font-size:13.5px}
+.final-stats .r{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding-bottom:5px}
+.final-stats .r span{color:var(--dim);font-weight:600}
+.final-stats .r b{color:var(--txt);font-weight:700;text-align:right}
+.moves{padding:0 18px 18px}
+.moves .mt{font-family:'Orbitron';font-size:11px;color:var(--gold);letter-spacing:1.5px;margin:6px 0 8px}
+.moves .mv{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+.moves .mv span{background:rgba(255,203,61,.08);border:1px solid rgba(255,203,61,.25);border-radius:9px;padding:8px 10px;font-weight:700;font-size:13px;text-align:center}
+
+/* hall of fame */
+.hof-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.hof{background:radial-gradient(circle at 50% 15%,rgba(255,203,61,.12),var(--bg2));border:1px solid rgba(255,203,61,.25);
+  border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;transition:.2s;position:relative}
+.hof:hover{transform:translateY(-4px);border-color:var(--gold)}
+.hof .pod{position:relative}
+.hof .pod img{width:100%;height:92px;object-fit:contain;filter:drop-shadow(0 10px 12px rgba(0,0,0,.5))}
+.hof .pod:after{content:"";position:absolute;left:15%;right:15%;bottom:-4px;height:12px;border-radius:50%;background:radial-gradient(ellipse,rgba(255,203,61,.4),transparent 70%)}
+.hof .nm{font-family:'Orbitron';font-size:12.5px;margin-top:8px;min-height:30px;line-height:1.2;display:flex;align-items:center;justify-content:center}
+.hof .rl{color:var(--muted);font-size:11px;font-weight:600;margin-top:2px}
+.hof .tcount{margin-top:5px;color:var(--gold);font-family:'Orbitron';font-size:10.5px;font-weight:700}
+
+/* achievements */
+.medal{display:flex;gap:14px;align-items:center;padding:16px;border-radius:16px;
+  background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);position:relative;overflow:hidden}
+.medal:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--gold),var(--gold2))}
+.medal .mdl{flex:none;width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle,rgba(255,203,61,.22),rgba(10,13,28,.9));border:2px solid var(--gold);position:relative}
+.medal .mdl img{width:50px;height:50px;object-fit:contain}
+.medal .mdl .star{position:absolute;bottom:-6px;right:-4px;font-size:18px}
+.medal h4{font-size:15px;font-family:'Orbitron'}
+.medal .who{color:var(--gold);font-weight:700;font-size:13px;margin:1px 0 3px}
+.medal p{color:var(--muted);font-size:13px;line-height:1.4}
+
+/* mechanics */
+.mech-stat{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.mech-stat .m{border-radius:18px;padding:22px;text-align:center;border:1px solid var(--line2);position:relative;overflow:hidden}
+.mech-stat .m.mega{background:linear-gradient(160deg,rgba(255,59,92,.18),rgba(164,92,255,.14))}
+.mech-stat .m.gmax{background:linear-gradient(160deg,rgba(255,59,92,.2),rgba(255,159,28,.12))}
+.mech-stat .m.zmove{background:linear-gradient(160deg,rgba(40,224,216,.16),rgba(61,139,255,.14))}
+.mech-stat .m b{font-family:'Orbitron';font-size:44px;display:block}
+.mech-stat .m span{font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:13px;color:var(--muted)}
+.mega-card{text-align:center;padding:14px 12px;cursor:pointer}
+.mega-card .mm,.m-hero .mm{position:relative;display:inline-block}
+.mega-card img{width:110px;height:110px;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(0,0,0,.5))}
+.mega-card .mm .z-crystal,.m-hero .mm .z-crystal{position:absolute;top:-4px;right:-4px;width:50px;height:50px;padding:5px;border-radius:50%;image-rendering:pixelated;background:radial-gradient(circle,rgba(10,13,28,.95),rgba(10,13,28,.55) 68%,transparent);box-shadow:0 2px 8px rgba(0,0,0,.55);border:1px solid rgba(40,224,216,.4);filter:none}
+.m-hero .mm .z-crystal.zc-pop{animation:megaBadgePop .35s ease-out both}
+.mega-card .nm{font-family:'Orbitron';font-size:13.5px;margin-top:6px}
+.mega-card .bs{color:var(--dim);font-size:12px;font-weight:600}
+
+/* rare groups */
+.rare-group{margin-bottom:30px}
+.rare-group .rh{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.rare-group .rh h3{font-size:18px}
+.rare-group.shiny .rh{border-color:rgba(200,210,255,.4)}
+.rare-group.legend .rh{border-color:rgba(255,159,28,.4)}
+.rare-group.myth .rh{border-color:rgba(164,92,255,.45)}
+.rare-group.ha .rh{border-color:rgba(40,209,255,.45)}
+
+/* ---------- Modal ---------- */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px;
+  background:rgba(3,5,12,.8);backdrop-filter:blur(8px)}
+.modal.open{display:flex;animation:fade .25s}
+.modal-box{background:linear-gradient(180deg,var(--panel),#0a0d1c);border:1px solid var(--line2);border-radius:22px;
+  max-width:560px;width:100%;max-height:94vh;overflow-y:auto;box-shadow:var(--shadow);position:relative}
+.modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);
+  border:1px solid var(--line2);color:#fff;font-size:18px;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:var(--red)}
+.m-hero{padding:8px 20px 18px;display:flex;gap:14px;align-items:center;position:relative}
+.m-hero img{width:158px;height:158px;object-fit:contain;filter:drop-shadow(0 10px 14px rgba(0,0,0,.6))}
+.m-hero h3{font-size:19px;margin-bottom:2px}
+.m-hero h3 .medal-btn{width:24px;height:24px;font-size:13px;flex:none}
+.m-hero img.mega-flash{animation:megaFlash .6s cubic-bezier(.2,.9,.3,1) both}
+.m-top{background:radial-gradient(circle at 25% 35%,rgba(164,92,255,.18),transparent 60%);border-radius:22px 22px 0 0}
+.modal-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 12px 0;flex-wrap:wrap}
+.modal-actions-btns{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.modal-actions .modal-close{position:static}
+.morph-btn{background:linear-gradient(90deg,#ff3b5c,#a45cff);color:#fff;border:none;padding:6px 11px;border-radius:999px;font-family:'Orbitron';font-weight:800;font-size:10.5px;cursor:pointer;white-space:nowrap;transition:.15s}
+.morph-btn.gmax{background:linear-gradient(90deg,#ff3b5c,#ff9f1c)}
+.morph-btn.zmove{background:linear-gradient(90deg,#28e0d8,#6a2cff)}
+.morph-btn:hover{transform:translateY(-1px)}
+.morph-btn.active{outline:2px solid #fff;box-shadow:0 0 12px rgba(255,255,255,.45)}
+.hover-sel{font-size:11px;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.hs-opt{background:rgba(255,255,255,.06);border:1px solid var(--line2);color:var(--muted);padding:3px 9px;border-radius:999px;font-size:10.5px;font-weight:700;cursor:pointer}
+.hs-opt.on{background:rgba(40,224,216,.18);border-color:#28e0d8;color:#28e0d8}
+.m-hero .mo{color:var(--gold);font-weight:700;font-size:12px}
+.m-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.m-body{padding:2px 20px 18px;display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.m-row{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed var(--line);font-size:12.5px}
+.m-row.full{grid-column:1/3}
+.m-row span{color:var(--muted);font-weight:600}
+.m-row b{text-align:right}
+.ha-star{font-size:11px;filter:drop-shadow(0 0 4px rgba(255,203,61,.7))}
+.m-note{grid-column:1/3;margin-top:10px;background:rgba(255,203,61,.07);border:1px solid rgba(255,203,61,.22);border-radius:12px;padding:9px 12px;color:var(--muted);font-size:12px;line-height:1.4}
+@media (max-width:520px){.m-body{grid-template-columns:1fr}.m-row.full{grid-column:1/2}.m-note{grid-column:1/2}
+  .m-hero img{width:104px;height:104px}}
+
+/* mobile bottom nav */
+.botnav{display:none}
+@media(max-width:920px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;bottom:0;width:250px;transform:translateX(-100%);transition:.25s;z-index:60}
+  .sidebar.open{transform:none}
+  .sidebar .nav{padding-bottom:28px}
+  .hero-inner{grid-template-columns:1fr;text-align:center;padding:32px 16px}
+  .hero-actions,.hero-stats{justify-content:center}
+  .hero-stats{flex-wrap:wrap;gap:16px 20px}
+  .stat-row{grid-template-columns:repeat(3,1fr)}
+  .tile span{white-space:normal}
+  /* em telas pequenas, permitir rolagem normal nas duas views */
+  #view-home.active,#view-profile.active{height:auto;overflow:visible}
+  #view-profile.active{display:block}
+  .hero{height:auto;min-height:100vh}
+  .hero-team{height:380px;margin-top:20px}
+  .botnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(10,13,26,.96);
+    border-top:1px solid var(--line2);backdrop-filter:blur(10px);padding:8px 6px}
+  .botnav a{flex:1;text-align:center;color:var(--muted);font-size:10.5px;font-weight:700;padding:6px 2px}
+  .botnav a .ic{font-size:20px;display:block}
+  .botnav a.active{color:var(--gold)}
+  .topbar{display:flex}
+  .main{padding-bottom:74px}
+  .wrap{padding:22px 16px}
+  .final-stats,.moves .mv{grid-template-columns:1fr}
+  .hof-grid{grid-template-columns:repeat(3,1fr)}
+  #availableList{grid-template-columns:repeat(5,1fr)}
+}
+@media(max-width:560px){
+  .wrap{padding:18px 12px}
+  .stat-row{grid-template-columns:repeat(2,1fr);gap:10px}
+  .tile{padding:12px 13px}
+  .tile b{font-size:28px}
+  .hero-stats{gap:14px 16px}
+  .hero-stats .s b{font-size:20px}
+  .hero-team{height:300px;transform:scale(.74)}
+  .region-banner .rb-art{max-width:46%;opacity:.75}
+  .section-head h2{font-size:22px}
+  .hof-grid{grid-template-columns:repeat(2,1fr)}
+  #availableList{grid-template-columns:repeat(3,1fr)}
+}
+.topbar{display:none;position:sticky;top:0;z-index:45;align-items:center;justify-content:space-between;
+  padding:12px 16px;background:rgba(10,13,26,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.topbar .mburger{font-size:24px;cursor:pointer;background:none;border:none;color:#fff}
+.topbar .tt{font-family:'Orbitron';font-weight:900;font-size:15px}
+.scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55}
+.scrim.on{display:block}
+</style>
+</head>
+<body>
+
+<!-- mobile topbar -->
+<div class="topbar">
+  <button class="mburger" onclick="toggleMenu()">☰</button>
+  <span class="tt">PEDRO <span style="color:var(--gold)">DATABOOK</span></span>
+  <span style="font-size:22px">🏆</span>
+</div>
+<div class="scrim" id="scrim" onclick="toggleMenu()"></div>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="ball"></div>
+      <div class="bt">PEDRO<br>DATABOOK<small>CAMPEÃO MUNDIAL</small></div>
+    </div>
+    <nav class="nav" id="nav">
+      <a data-view="home" class="active"><span class="ic">🏠</span>Início</a>
+      <a data-view="profile"><span class="ic">🎖️</span>Perfil de Pedro</a>
+      <a data-view="timeline"><span class="ic">🗺️</span>Linha do Tempo</a>
+      <div class="sep">Jornada</div>
+      <a data-view="regions"><span class="ic">🌍</span>Regiões</a>
+      <a data-view="teams"><span class="ic">⚔️</span>Times por Capítulo</a>
+      <a data-view="myteams"><span class="ic">🛡️</span>Meus Times</a>
+      <a data-view="titles"><span class="ic">🏅</span>Títulos</a>
+      <div class="sep">Coleção</div>
+      <a data-view="pokedex"><span class="ic">📕</span>Pokédex</a>
+      <a data-view="box"><span class="ic">📦</span>Box</a>
+      <a data-view="mechanics"><span class="ic">🔮</span>Mecânicas</a>
+      <a data-view="rare"><span class="ic">✨</span>Pokémon Raros</a>
+      <div class="sep">Legado</div>
+      <a data-view="final"><span class="ic">👑</span>Time Final</a>
+      <a data-view="hof"><span class="ic">🌟</span>Hall da Fama</a>
+      <a data-view="achievements"><span class="ic">🏵️</span>Conquistas</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <!-- HOME -->
+    <section class="view active" id="view-home">
+      <div class="hero">
+        <div class="hero-bg"><div class="stadium"></div><div class="glow"></div></div>
+        <div class="hero-inner">
+          <div>
+            <div class="hero-tag">🏆 CAMPEÃO MUNDIAL — RADICAL RED</div>
+            <h1>PEDRO<br>CAMPEÃO<br>MUNDIAL</h1>
+            <p class="lead">De Kanto até Galar, uma jornada marcada por títulos, capturas lendárias, Mega Evoluções, a era Gigantamax e um Time Final digno do topo do mundo.</p>
+            <div class="hero-actions">
+              <button class="btn gold" onclick="go('timeline')">▶ Iniciar a Jornada</button>
+              <button class="btn red" onclick="go('final')">👑 Ver Time Final</button>
+              <button class="btn ghost" onclick="go('hof')">🌟 Hall da Fama</button>
+            </div>
+            <div class="hero-stats" id="heroStats"></div>
+          </div>
+          <div class="hero-team" id="heroTeam"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="view" id="view-profile"><div class="wrap">
+      <div class="kicker">Perfil do Treinador</div>
+      <div class="section-head"><div><h2>Pedro</h2><div class="sub">Treinador Campeão Mundial • Jornada de Kanto até Galar</div></div></div>
+      <div class="card" style="display:grid;grid-template-columns:240px 1fr;gap:0;overflow:hidden;margin-bottom:16px">
+        <div style="background:radial-gradient(circle at 50% 25%,rgba(255,203,61,.2),var(--bg2));display:flex;align-items:center;justify-content:center;flex-direction:column;padding:18px;border-right:1px solid var(--line)">
+          <div role="img" aria-label="Pedro - Treinador" style="width:128px;height:128px;border-radius:50%;border:3px solid var(--gold);box-shadow:0 0 20px rgba(255,203,61,.5);background-image:url('https://res.cloudinary.com/dokl8hfqz/image/upload/v1782926448/Pedro_Castanho_-_Imagem_de_Treinador_sem_fundo_g0aomc.png');background-size:250%;background-position:50% 9%;background-repeat:no-repeat"></div>
+          <div class="badge b-champ" style="margin-top:12px;white-space:nowrap">👑 Campeão Mundial</div>
+        </div>
+        <div style="padding:18px 22px">
+          <p style="color:var(--muted);font-size:15px;line-height:1.55">Pedro é um treinador Pokémon que atravessou diversas regiões, conquistou títulos em cada etapa da sua jornada e alcançou o posto máximo ao se tornar <b style="color:var(--gold)">Campeão Mundial em Radical Red</b>. Sua história é marcada por parceiros icônicos, Pokémon raros, Mega Evoluções dominadas e um Time Final extremamente poderoso.</p>
+          <div class="kicker" style="margin-top:14px">Time Final</div>
+          <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap" id="profileFinalTeam"></div>
+        </div>
+      </div>
+      <div class="stat-row" id="profileStats"></div>
+    </div></section>
+
+    <!-- TIMELINE -->
+    <section class="view" id="view-timeline"><div class="wrap">
+      <div class="kicker">Cronologia</div>
+      <div class="section-head"><div><h2>Linha do Tempo da Jornada</h2><div class="sub"><span id="cnEtapas">16</span> etapas conectando o início em Kanto ao título mundial em Radical Red e ao recomeço em Galar. Clique em qualquer etapa para ver os detalhes.</div></div></div>
+      <div class="timeline" id="timelineList"></div>
+    </div></section>
+
+    <!-- REGIONS -->
+    <section class="view" id="view-regions"><div class="wrap">
+      <div class="kicker">Jornada</div>
+      <div class="section-head"><div><h2>Regiões & Hacks</h2><div class="sub">Cada etapa da jornada com banner, título, time campeão, capturas e resumo narrativo.</div></div></div>
+      <div id="regionsList"></div>
+    </div></section>
+
+    <!-- TEAMS -->
+    <section class="view" id="view-teams"><div class="wrap">
+      <div class="kicker">Vitrine</div>
+      <div class="section-head"><div><h2>Times por Capítulo</h2><div class="sub">O time de seis Pokémon de cada capítulo da jornada de Pedro. Clique num Pokémon para ver a ficha.</div></div></div>
+      <div class="grid g-3" id="teamsList"></div>
+    </div></section>
+
+    <!-- MY TEAMS -->
+    <section class="view" id="view-myteams"><div class="wrap">
+      <div class="kicker">Vitrine</div>
+      <div class="section-head"><div><h2>Times de Pedro</h2><div class="sub">Os esquadrões de Pedro. Clique num Pokémon para ver a ficha.</div></div></div>
+      <div class="section-head" style="margin-top:8px"><div><h2 style="font-size:21px">Time Principal</h2><div class="sub">O Time Final que consagrou Pedro Campeão Mundial.</div></div></div>
+      <div class="card team-card is-final"><div class="team-mons" id="titlesMainTeam"></div></div>
+      <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:21px">Time Reserva de Luxo</h2><div class="sub">Reforços lendários prontos para qualquer batalha.</div></div></div>
+      <div class="card team-card"><div class="team-mons" id="reserveList"></div></div>
+      <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:21px">Time Reserva</h2><div class="sub">Esquadrão alternativo de Pedro.</div></div></div>
+      <div class="card team-card"><div class="team-mons" id="teamCList"></div></div>
+      <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:21px">Pokémons Disponíveis</h2><div class="sub">Todos os campeões de pelo menos um título que ainda não estão em nenhum dos 3 times acima.</div></div></div>
+      <div class="card team-card"><div class="team-mons" id="availableList"></div></div>
+    </div></section>
+
+    <!-- TITLES -->
+    <section class="view" id="view-titles"><div class="wrap">
+      <div class="kicker">Conquistas</div>
+      <div class="section-head"><div><h2>Títulos de Pedro</h2><div class="sub"><span id="cnTitulos">14</span> coroas conquistadas ao longo da jornada.</div></div></div>
+      <div class="grid g-auto" id="titlesList"></div>
+    </div></section>
+
+    <!-- BOX (captures de Pedro) -->
+    <section class="view" id="view-box"><div class="wrap">
+      <div class="kicker">Coleção Pessoal</div>
+      <div class="section-head"><div><h2>Box de Pedro</h2><div class="sub">Os Pokémon que Pedro capturou, na região onde apareceram pela primeira vez. Pesquise e filtre.</div></div></div>
+      <div class="toolbar">
+        <div class="search"><span>🔍</span><input id="pkSearch" placeholder="Pesquisar Pokémon por nome..." oninput="renderDex()"></div>
+      </div>
+      <div class="dex-filterbar">
+        <select class="dex-select" id="boxSelRegion" onchange="boxRegion=this.value;renderDex()"></select>
+        <select class="dex-select" id="boxSelType1" onchange="boxType1=this.value;renderDex()"></select>
+        <select class="dex-select" id="boxSelType2" onchange="boxType2=this.value;renderDex()"></select>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+        <div class="filters" id="pkFilters"></div>
+        <div class="count-note" id="pkCount" style="margin:0"></div>
+        <div style="display:flex;gap:8px;margin-left:auto">
+          <button class="chip" onclick="exportBox('csv')" title="Exportar lista filtrada em CSV">⬇️ CSV</button>
+          <button class="chip" onclick="exportBox('json')" title="Exportar lista filtrada em JSON">⬇️ JSON</button>
+        </div>
+      </div>
+      <div class="grid g-auto" id="dexGrid"></div>
+    </div></section>
+
+    <!-- POKEDEX (todos os Pokémon, ordenados por Nº) -->
+    <section class="view" id="view-pokedex"><div class="wrap">
+      <div class="kicker">Registro Nacional</div>
+      <div class="section-head"><div><h2>Pokédex</h2><div class="sub">Todos os Pokémon da jornada de Pedro em ordem de número — <span id="cnDex">0</span> espécies registradas. Megas, Gigantamax, Z-Moves e formas aparecem como filtros e no hover, mas não contam no total.</div></div></div>
+      <div class="toolbar">
+        <div class="search"><span>🔍</span><input id="dexSearch" placeholder="Pesquisar por nome..." oninput="renderPokedex()"></div>
+      </div>
+      <div class="dex-filterbar">
+        <select class="dex-select" id="dexSelRegion" onchange="dexRegion=this.value;renderPokedex()"></select>
+        <select class="dex-select" id="dexSelType1" onchange="dexType1=this.value;renderPokedex()"></select>
+        <select class="dex-select" id="dexSelType2" onchange="dexType2=this.value;renderPokedex()"></select>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+        <div class="filters" id="dexFullFilters"></div>
+        <div class="count-note" id="dexFullCount" style="margin:0"></div>
+        <div style="display:flex;gap:8px;margin-left:auto">
+          <button class="chip" onclick="exportPokedex('csv')" title="Exportar lista filtrada em CSV">⬇️ CSV</button>
+          <button class="chip" onclick="exportPokedex('json')" title="Exportar lista filtrada em JSON">⬇️ JSON</button>
+        </div>
+      </div>
+      <div class="grid g-auto" id="dexFullList"></div>
+    </div></section>
+
+    <!-- MECHANICS -->
+    <section class="view" id="view-mechanics"><div class="wrap">
+      <div class="kicker">Domínio</div>
+      <div class="section-head"><div><h2>Mecânicas</h2><div class="sub">Pedro domina <span id="cnMegasSub">21</span> Megas, <span id="cnGmaxSub">13</span> Gigantamax, <span id="cnZmoveSub2">12</span> Z-Moves exclusivos e <span id="cnFormasSub">9</span> formas alternativas.</div></div></div>
+      <div class="mech-stat">
+        <div class="m mega"><b id="cnMegasStat">21</b><span>Mega Evoluções</span></div>
+        <div class="m gmax"><b id="cnGmax">13</b><span>Gigantamax</span></div>
+        <div class="m zmove"><b id="cnZmove">12</b><span>Z-Moves Exclusivos</span></div>
+        <div class="m"><b id="cnFormas">9</b><span>Formas Alternativas</span></div>
+      </div>
+      <div class="section-head"><div><h2 style="font-size:21px">Mega Evoluções Dominadas</h2><div class="sub"><span id="cnKalosMegas">18</span> adquiridas em Kalos (Y+X), <span id="cnORMegas">6</span> em Omega Ruby, Mega Gyarados Shiny (Mega Light Platinum) e Mega Absol (Roria).</div></div></div>
+      <div class="grid g-auto" id="megaList"></div>
+      <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:21px">Gigantamax Dominadas</h2><div class="sub"><span id="cnGmaxSub2">13</span> formas Gigantamax dominadas por Pedro, desbloqueadas em Galar.</div></div></div>
+      <div class="grid g-auto" id="gmaxList"></div>
+      <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:21px">Z-Moves Dominados</h2><div class="sub"><span id="cnZmovesSub">12</span> Z-Moves exclusivos dominados com seus cristais Z (Tapunium Z é compartilhado pelos 4 Tapus).</div></div></div>
+      <div class="grid g-auto" id="zmoveList"></div>
+      <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:21px">Formas Alternativas</h2><div class="sub"><span id="cnFormasSub2">9</span> formas especiais dominadas: Primal, Therian, Resolute, Pirouette, Ash e Zenith.</div></div></div>
+      <div class="grid g-auto" id="formsList"></div>
+    </div></section>
+
+    <!-- RARE -->
+    <section class="view" id="view-rare"><div class="wrap">
+      <div class="kicker">Raridades</div>
+      <div class="section-head"><div><h2>Pokémon Raros</h2><div class="sub">Shiny, Lendários, Míticos e Hidden Ability — as joias da coleção de Pedro.</div></div></div>
+      <div id="rareList"></div>
+    </div></section>
+
+    <!-- FINAL -->
+    <section class="view" id="view-final"><div class="wrap">
+      <div class="final-hero">
+        <div class="cup">🏆</div>
+        <h2>Time Final — Campeão Mundial</h2>
+        <p>Pedro levanta o troféu de Campeão Mundial em <b style="color:var(--gold)">Radical Red</b>, cercado pelos seis Pokémon finais — o ápice de uma jornada lendária.</p>
+        <div style="margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap" id="finalOrbs"></div>
+      </div>
+      <div class="grid g-2" id="finalTeam"></div>
+    </div></section>
+
+    <!-- HALL OF FAME -->
+    <section class="view" id="view-hof"><div class="wrap">
+      <div class="kicker">Sala de Troféus</div>
+      <div class="section-head"><div><h2>Hall da Fama de Pedro</h2><div class="sub">Os Pokémon mais marcantes e mais titulados da jornada, imortalizados em holograma.</div></div></div>
+      <div class="section-head" style="margin-top:6px"><div><h2 style="font-size:20px">💎 Lendas com mais títulos</h2></div></div>
+      <div class="hof-grid" id="hofTop"></div>
+      <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:20px">👑 Mais vezes MVP</h2></div></div>
+      <div class="hof-grid" id="hofMvp"></div>
+      <div class="section-head" style="margin-top:30px"><div><h2 style="font-size:20px">⭐ Pokémon MVP por Título</h2></div></div>
+      <div class="grid g-3" id="hofSig"></div>
+    </div></section>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="view" id="view-achievements"><div class="wrap">
+      <div class="kicker">Medalhas</div>
+      <div class="section-head"><div><h2>Conquistas Especiais</h2><div class="sub">Marcos desbloqueados ao longo da jornada de Pedro.</div></div></div>
+      <div class="grid g-2" id="achList"></div>
+    </div></section>
+
+  </main>
+</div>
+
+<!-- bottom nav -->
+<nav class="botnav">
+  <a data-view="home" class="active"><span class="ic">🏠</span>Início</a>
+  <a data-view="timeline"><span class="ic">🗺️</span>Jornada</a>
+  <a data-view="pokedex"><span class="ic">📕</span>Pokédex</a>
+  <a data-view="hof"><span class="ic">🌟</span>Hall</a>
+  <a data-view="final"><span class="ic">👑</span>Final</a>
+  <a class="botnav-more" onclick="toggleMenu()"><span class="ic">☰</span>Mais</a>
+</nav>
+
+<!-- modal -->
+<div class="modal" id="modal"><div class="modal-box" id="modalBox" data-nomega></div></div>
+
+<script src="pedro_app.js"></script>
+</body>
+</html>
